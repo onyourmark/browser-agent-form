@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Browser Agent Form</title>
+</head>
+<body>
+  <h1>Browser Agent Form</h1>
+  <form id="form">
+    <p>
+      <label for="name">Name</label><br>
+      <input type="text" id="name" name="name" required>
+    </p>
+    <p>
+      <label for="email">Email</label><br>
+      <input type="email" id="email" name="email" required>
+    </p>
+    <p>
+      <label for="program">Program</label><br>
+      <select id="program" name="program">
+        <option>MS Information Systems</option>
+        <option>MS Data Science</option>
+        <option>MS Computer Science</option>
+      </select>
+    </p>
+    <p>
+      <input type="checkbox" id="agreement" name="agreement" required>
+      <label for="agreement">I confirm that the information above is correct</label>
+    </p>
+    <button type="submit" id="submit">Submit</button>
+  </form>
+  <section id="result" aria-live="polite" hidden>
+    <h2>FORM SUBMITTED SUCCESSFULLY</h2>
+    <p>Name: <span id="submitted-name"></span></p>
+    <p>Email: <span id="submitted-email"></span></p>
+    <p>Program: <span id="submitted-program"></span></p>
+    <p>Agreement: <span id="submitted-agreement"></span></p>
+  </section>
+  <script>
+    document.getElementById('form').addEventListener('submit', function (event) {
+      event.preventDefault();
+      for (const field of ['name', 'email', 'program']) {
+        document.getElementById('submitted-' + field).textContent =
+          document.getElementById(field).value;
+      }
+      document.getElementById('submitted-agreement').textContent =
+        document.getElementById('agreement').checked ? 'Checked' : 'Unchecked';
+      document.getElementById('result').hidden = false;
+    });
+  </script>
+</body>
+</html>
