@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agent Airways Lab</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div>
+      <p class="eyebrow">Browser Agent Practice Site</p>
+      <h1>Agent Airways</h1>
+      <p class="subtitle">A completely fake airline booking site for classroom browser-agent experiments.</p>
+    </div>
+    <button id="resetTrip" type="button" class="secondary">Reset trip</button>
+  </header>
+
+  <main>
+    <section class="notice" aria-label="Classroom notice">
+      <strong>No real booking occurs.</strong>
+      This site stores nothing, sends no reservation, and asks for no payment.
+    </section>
+
+    <section id="searchStage" class="stage">
+      <h2>1. Search for a flight</h2>
+      <form id="searchForm">
+        <div class="grid-two">
+          <label>
+            From
+            <select id="fromAirport" name="from" required>
+              <option value="">Choose an airport</option>
+              <option value="DCA">Washington Reagan (DCA)</option>
+              <option value="BOS">Boston (BOS)</option>
+              <option value="JFK">New York JFK (JFK)</option>
+              <option value="ORD">Chicago O'Hare (ORD)</option>
+              <option value="ATL">Atlanta (ATL)</option>
+            </select>
+          </label>
+
+          <label>
+            To
+            <select id="toAirport" name="to" required>
+              <option value="">Choose an airport</option>
+              <option value="DCA">Washington Reagan (DCA)</option>
+              <option value="BOS">Boston (BOS)</option>
+              <option value="JFK">New York JFK (JFK)</option>
+              <option value="ORD">Chicago O'Hare (ORD)</option>
+              <option value="ATL">Atlanta (ATL)</option>
+            </select>
+          </label>
+
+          <label>
+            Departure date
+            <input id="departureDate" name="departureDate" type="date" required>
+          </label>
+
+          <label>
+            Passengers
+            <select id="passengers" name="passengers">
+              <option value="1">1 passenger</option>
+              <option value="2">2 passengers</option>
+              <option value="3">3 passengers</option>
+            </select>
+          </label>
+        </div>
+
+        <p id="searchError" class="error" role="alert"></p>
+        <button id="searchFlights" type="submit">Search flights</button>
+      </form>
+    </section>
+
+    <section id="resultsStage" class="stage hidden" aria-live="polite">
+      <h2>2. Choose a flight</h2>
+      <p id="searchSummary"></p>
+      <p id="loadingFlights" class="loading hidden">Loading flights...</p>
+      <div id="flightResults"></div>
+
+      <details class="travel-alert">
+        <summary>Travel alert: weather information</summary>
+        <p>
+          This is mock information for the class exercise. Afternoon flights may encounter
+          simulated weather delays. No real weather data is being used.
+        </p>
+      </details>
+    </section>
+
+    <section id="seatStage" class="stage hidden">
+      <h2>3. Choose a seat</h2>
+      <p id="selectedFlightSummary"></p>
+      <p>Select one available seat. Gray seats are unavailable.</p>
+
+      <div id="seatMap" class="seat-map" aria-label="Airplane seat map"></div>
+      <p id="seatMessage" class="status" aria-live="polite"></p>
+      <button id="continueFromSeat" type="button" disabled>Continue</button>
+    </section>
+
+    <section id="passengerStage" class="stage hidden">
+      <h2>4. Passenger information</h2>
+      <form id="passengerForm">
+        <div class="grid-two">
+          <label>
+            Full name
+            <input id="passengerName" name="passengerName" type="text" autocomplete="off" required>
+          </label>
+
+          <label>
+            Email
+            <input id="passengerEmail" name="passengerEmail" type="email" autocomplete="off" required>
+          </label>
+        </div>
+
+        <fieldset>
+          <legend>Optional extras</legend>
+          <label class="check-row">
+            <input id="checkedBag" type="checkbox">
+            Add one checked bag
+          </label>
+          <label class="check-row">
+            <input id="priorityBoarding" type="checkbox">
+            Add priority boarding
+          </label>
+        </fieldset>
+
+        <button id="continueToReview" type="submit">Continue to review</button>
+      </form>
+    </section>
+
+    <section id="reviewStage" class="stage hidden">
+      <h2>5. Review the reservation</h2>
+      <div id="reviewCard" class="review-card"></div>
+
+      <label class="check-row important-check">
+        <input id="confirmDetails" type="checkbox">
+        I confirm that the reservation details above are correct
+      </label>
+
+      <p id="reviewMessage" class="status" aria-live="polite"></p>
+      <button id="confirmReservation" type="button" disabled>Confirm reservation</button>
+    </section>
+
+    <section id="confirmationStage" class="stage hidden">
+      <h2>RESERVATION CONFIRMED</h2>
+      <p class="confirmation-code">Confirmation code: <strong id="confirmationCode">LAB2026</strong></p>
+      <div id="confirmationDetails" class="review-card"></div>
+      <p>
+        This confirmation exists only on this practice page. Nothing was purchased or transmitted.
+      </p>
+    </section>
+  </main>
+
+  <dialog id="flightDialog">
+    <h2 id="dialogTitle">Flight details</h2>
+    <p id="dialogBody"></p>
+    <button id="closeDialog" type="button">Close</button>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
