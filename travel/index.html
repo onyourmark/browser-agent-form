@@ -8,18 +8,34 @@
 </head>
 <body>
   <header class="site-header">
-    <div>
-      <p class="eyebrow">Browser Agent Practice Site</p>
-      <h1>Agent Airways</h1>
-      <p class="subtitle">A completely fake airline booking site for classroom browser-agent experiments.</p>
+    <div class="header-inner">
+      <div class="brand-bar">
+        <img class="airline-logo" src="agent-airways-logo.png" alt="Agent Airways logo" width="1000" height="325">
+        <button id="resetTrip" type="button" class="secondary">Reset trip</button>
+      </div>
+      <div class="header-copy">
+        <p class="eyebrow">Browser Agent Practice Site</p>
+        <h1>Agent Airways</h1>
+        <p class="subtitle">A completely fake airline where your browser agent can finally stop reading Wikipedia and start booking pretend flights.</p>
+        <p class="header-aside">Good news: your agent can now really travel. Bad news: it still cannot enjoy the in-flight pretzels.</p>
+      </div>
     </div>
-    <button id="resetTrip" type="button" class="secondary">Reset trip</button>
   </header>
 
   <main>
     <section class="notice" aria-label="Classroom notice">
       <strong>No real booking occurs.</strong>
       This site stores nothing, sends no reservation, and asks for no payment.
+    </section>
+
+    <section class="introduction" aria-labelledby="vacationHeading">
+      <h2 id="vacationHeading">Your agent's vacation starts here</h2>
+      <p>Mission: search flights, choose a seat, fill the passenger form, review the reservation, and confirm the booking without panicking.</p>
+      <ul class="travel-promises">
+        <li>No real plane will depart.</li>
+        <li>No real bag will be checked.</li>
+        <li>No real frequent-flyer miles will be earned.</li>
+      </ul>
     </section>
 
     <section id="searchStage" class="stage">
